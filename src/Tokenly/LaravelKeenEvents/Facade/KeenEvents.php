@@ -1,6 +1,6 @@
 <?php
 
-namespace Swapbot\Providers\KeenEvents\Facade;
+namespace Tokenly\LaravelKeenEvents\Facade;
 
 use Illuminate\Support\Facades\Facade;
 

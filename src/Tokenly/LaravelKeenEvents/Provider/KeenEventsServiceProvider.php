@@ -1,10 +1,10 @@
 <?php
 
-namespace Swapbot\Providers\KeenEvents\Provider;
+namespace Tokenly\LaravelKeenEvents\Provider;
 
 use Exception;
 use Illuminate\Support\ServiceProvider;
-use Swapbot\Providers\KeenEvents\KeenEvents;
+use Tokenly\LaravelKeenEvents\KeenEvents;
 
 class KeenEventsServiceProvider extends ServiceProvider {
 

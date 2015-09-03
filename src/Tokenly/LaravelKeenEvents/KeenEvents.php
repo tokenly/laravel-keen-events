@@ -1,6 +1,6 @@
 <?php
 
-namespace Swapbot\Providers\KeenEvents;
+namespace Tokenly\LaravelKeenEvents;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
