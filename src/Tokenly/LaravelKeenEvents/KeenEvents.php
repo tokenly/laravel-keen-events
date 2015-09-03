@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Log;
 
 class KeenEvents {
 
-    public function __construct($queue_connection, $queue_name) {
+    public function __construct($queue_connection, $queue_name, $active) {
         $this->queue_connection = $queue_connection;
         $this->queue_name       = $queue_name;
+        $this->active           = $active;
     }
 
     public function send($collection, $event) {
+        if (!$this->active) { return; }
+
         $this->sendEventToBeanstalkQueue($collection, $event);
     }
 
