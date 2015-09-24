@@ -7,18 +7,23 @@ use Illuminate\Support\Facades\Log;
 
 class KeenEvents {
 
-    public function __construct($queue_connection, $queue_name, $active) {
+    public function __construct($queue_connection, $queue_name, $keen_active, $slack_active) {
         $this->queue_connection = $queue_connection;
         $this->queue_name       = $queue_name;
-        $this->active           = $active;
+        $this->keen_active      = $keen_active;
+        $this->slack_active     = $slack_active;
     }
 
-    public function isActive() {
-        return $this->active;
+    public function keenIsActive() {
+        return $this->keen_active;
+    }
+
+    public function slackIsActive() {
+        return $this->slack_active;
     }
 
     public function sendKeenEvent($collection, $event) {
-        if (!$this->active) { return; }
+        if (!$this->keen_active) { return; }
 
         $this->sendEventToBeanstalkQueue($event, [
             'jobType'    => 'keen',
@@ -27,7 +32,7 @@ class KeenEvents {
     }
 
     public function sendSlackEvent($data_or_title, $text_or_fields) {
-        if (!$this->active) { return; }
+        if (!$this->slack_active) { return; }
 
         if (is_array($text_or_fields)) {
             $fields = $text_or_fields;
